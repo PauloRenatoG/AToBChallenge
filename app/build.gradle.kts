@@ -40,6 +40,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -63,6 +64,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.coil.compose)
     implementation(libs.navigation.compose)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
