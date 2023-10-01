@@ -17,7 +17,7 @@ class ProductListRemoteDataSourceImpl @Inject constructor(
             val result = service.getProductsList()
             if (result.isSuccessful) {
                 emit(
-                    AsyncResult.Success(result.body()?.products?.map { it?.mapToDomain() })
+                    AsyncResult.Success(result.body()?.products?.mapToDomain())
                 )
             } else {
                 emit(

@@ -1,5 +1,7 @@
 package com.example.atobchallenge.di
 
+import com.example.atobchallenge.data.localdatasource.ProductListLocalDataSource
+import com.example.atobchallenge.data.localdatasource.ProductListLocalDataSourceImpl
 import com.example.atobchallenge.data.remotedatasource.ProductListRemoteDataSource
 import com.example.atobchallenge.data.remotedatasource.ProductListRemoteDataSourceImpl
 import dagger.Binds
@@ -15,4 +17,9 @@ interface DataModule {
     fun bindProductListRemoteDataSource(
         dataSource: ProductListRemoteDataSourceImpl
     ): ProductListRemoteDataSource
+
+    @Binds
+    fun bindProductListLocalDataSource(
+        dataSource: ProductListLocalDataSourceImpl
+    ): ProductListLocalDataSource
 }

@@ -1,7 +1,10 @@
 package com.example.atobchallenge.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "product")
 data class ProductResponse(
     @SerializedName("brand")
     val brand: String?,
@@ -12,6 +15,7 @@ data class ProductResponse(
     @SerializedName("discountPercentage")
     val discountPercentage: Double?,
     @SerializedName("id")
+    @PrimaryKey
     val id: Int?,
     @SerializedName("images")
     val images: List<String?>,
