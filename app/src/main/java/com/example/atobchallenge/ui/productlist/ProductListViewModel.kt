@@ -27,12 +27,14 @@ class ProductListViewModel @Inject constructor(
                 when (result) {
                     is AsyncResult.Success -> {
                         _state.update {
-                            it.copy(productList = result.data ?: listOf())
+                            it.copy(productList = result.data ?: listOf(), errorMessage = null)
                         }
                     }
 
                     is AsyncResult.Error -> {
-                        val message = result.message
+                        _state.update {
+                            it.copy(errorMessage = result.message)
+                        }
                     }
                 }
             }

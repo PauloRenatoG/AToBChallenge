@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.atobchallenge.domain.model.Product
 import com.example.atobchallenge.ui.design.CardProduct
+import com.example.atobchallenge.ui.design.ErrorMessage
 import com.example.atobchallenge.ui.theme.AToBChallengeTheme
 
 @Composable
@@ -32,6 +33,10 @@ fun ProductListScreen(
 fun ProductListContent(state: ProductListUiState, navigate: (Int?) -> Unit) {
 
     Scaffold {
+
+        if (state.errorMessage != null) {
+            ErrorMessage(message = state.errorMessage)
+        }
 
         LazyColumn(
             contentPadding = PaddingValues(
