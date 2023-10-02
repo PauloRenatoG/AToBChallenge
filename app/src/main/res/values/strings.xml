@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AToBChallenge</string>
+
+    <string name="discount">Discount: %1$.2f%%</string>
+    <string name="brand">Brand: %1$s</string>
+    <string name="category">Category: %1$s</string>
+    <string name="price">Price: $%1$d</string>
+    <string name="rating">Rating:</string>
+    <string name="stock">Stock: %1$d</string>
 </resources>
