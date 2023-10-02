@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.atobchallenge.ui.productlist.ProductListScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.atobchallenge.navigation.Navigation
+import com.example.atobchallenge.navigation.Screen
 import com.example.atobchallenge.ui.theme.AToBChallengeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,10 +24,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ProductListScreen()
+                    Navigation(
+                        navController = rememberNavController(),
+                        startDestination = Screen.ProductListScreen.route
+                    )
                 }
             }
         }
     }
 }
-

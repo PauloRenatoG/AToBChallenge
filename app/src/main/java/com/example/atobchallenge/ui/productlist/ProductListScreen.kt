@@ -10,14 +10,15 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.atobchallenge.domain.model.Product
 import com.example.atobchallenge.ui.design.CardProduct
+import com.example.atobchallenge.ui.design.ErrorMessage
 import com.example.atobchallenge.ui.theme.AToBChallengeTheme
 
 @Composable
 fun ProductListScreen(
-    viewModel: ProductListViewModel = viewModel()
+    viewModel: ProductListViewModel,
+    navigate: (Int?) -> Unit
 ) {
 
     LaunchedEffect(Unit) {
@@ -25,13 +26,17 @@ fun ProductListScreen(
     }
     val state = viewModel.state.collectAsStateWithLifecycle()
 
-    ProductListContent(state = state.value)
+    ProductListContent(state = state.value, navigate = navigate)
 }
 
 @Composable
-fun ProductListContent(state: ProductListUiState) {
+fun ProductListContent(state: ProductListUiState, navigate: (Int?) -> Unit) {
 
     Scaffold {
+
+        if (state.errorMessage != null) {
+            ErrorMessage(message = state.errorMessage)
+        }
 
         LazyColumn(
             contentPadding = PaddingValues(
@@ -43,7 +48,10 @@ fun ProductListContent(state: ProductListUiState) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(items = state.productList) { item ->
-                CardProduct(product = item, onClick = {})
+                CardProduct(
+                    product = item,
+                    onClick = { product -> navigate(product?.id) }
+                )
             }
         }
     }
@@ -83,6 +91,6 @@ fun ProductListScreenPreview() {
     val state = ProductListUiState(productList = list)
 
     AToBChallengeTheme {
-        ProductListContent(state = state)
+        ProductListContent(state = state, navigate = {})
     }
 }
